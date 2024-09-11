@@ -1,0 +1,77 @@
+plugins {
+    id 'eclipse'
+    id 'maven-publish'
+    id 'jacoco'
+
+	id 'java'
+	id 'org.springframework.boot' version '3.3.3'
+	id 'io.spring.dependency-management' version '1.1.6'
+}
+
+group = 'br.com.jtech.services'
+version = APP_VERSION
+
+java {
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(21)
+	}
+}
+
+repositories {
+	maven { url "https://nexus.jtech.com.br/repository/maven-public" }
+	mavenCentral()
+}
+
+ext {
+	set('springCloudVersion', "2023.0.3")
+}
+
+dependencies {
+	implementation "org.springdoc:springdoc-openapi-starter-webmvc-ui:2.0.4"
+	compileOnly "org.projectlombok:lombok"
+	annotationProcessor "org.projectlombok:lombok"
+	implementation "org.springframework.boot:spring-boot-starter-web"
+	testImplementation "org.assertj:assertj-core:3.24.2"
+	testImplementation "com.google.code.bean-matchers:bean-matchers:0.14"
+	testImplementation "org.junit.platform:junit-platform-suite-engine:1.9.2"
+	testRuntimeOnly "com.h2database:h2"
+	testImplementation "org.mongounit:mongounit:2.0.1"
+	implementation 'org.springframework.boot:spring-boot-starter-actuator'
+	implementation 'org.springframework.boot:spring-boot-starter-data-mongodb'
+	implementation 'org.springframework.boot:spring-boot-starter-data-redis'
+	implementation 'org.springframework.boot:spring-boot-starter-validation'
+	implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+
+dependencyManagement {
+	imports {
+		mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+	}
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            groupId = group
+            artifactId = rootProject.name
+            version = version
+            from components.java
+        }
+    }
+    repositories {
+        maven {
+            name 'nexus'
+            url = 'https://nexus.jtech.com.br/repository/maven-' + (version.endsWith('SNAPSHOT') ? 'snapshots/' : 'releases/')
+            credentials {
+                username System.getenv("MAVEN_REPO_USER")
+                password System.getenv("MAVEN_REPO_PASS")
+            }
+        }
+    }
+}
