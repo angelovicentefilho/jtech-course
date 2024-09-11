@@ -1,0 +1,23 @@
+version: '3.0'
+services:
+  jtech-mongodb-server:
+    container_name: jtech-mongodb-server
+    image: mongo:4.4.6
+    restart: always
+    ports:
+    - 27017:27017
+    volumes:
+    - $PWD/storage/mongo:/data/db
+    networks:
+    - dev-services
+  jtech-redis-server:
+    container_name: jtech-redis-server
+    image: redis
+    restart: always
+    command: redis-server --requirepass root
+    ports:
+    - 6379:6379
+    networks:
+    - dev-services
+networks:
+  dev-services:

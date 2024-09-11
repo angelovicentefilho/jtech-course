@@ -26,7 +26,7 @@ import org.springframework.context.annotation.Configuration;
 public class CreatePatientUseCaseConfig {
 
     @Bean
-    public CreatePatientUseCase useCase(CreatePatientAdapter createPatientAdapter) {
+    public CreatePatientUseCase createPatientUseCase(CreatePatientAdapter createPatientAdapter) {
         return new CreatePatientUseCase(createPatientAdapter);
      }
 

@@ -38,22 +38,34 @@ import java.util.List;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class PatientResponse implements Serializable {
     private String id;
+    private String name;
+    private String email;
+    private String phone;
+    private String password;
+    private String username;
+    private Integer age;
     List<PatientResponse> responses;
 
-    public static PatientResponse of(Patient patient) {
+    public static PatientResponse fromDomain(Patient patient) {
         return PatientResponse.builder()
                 .id(patient.getId())
+                .name(patient.getName())
+                .email(patient.getEmail())
+                .phone(patient.getPhone())
+                .password(patient.getPassword())
+                .username(patient.getUsername())
+                .age(patient.getAge())
                 .build();
     }
 
-    public static PatientResponse of(List<PatientEntity> entities) {
-        var list = entities.stream().map(PatientResponse::of).toList();
+    public static PatientResponse fromDomain(List<PatientEntity> entities) {
+        var list = entities.stream().map(PatientResponse::fromDomain).toList();
         return PatientResponse.builder()
                 .responses(list)
                 .build();
     }
 
-    public static PatientResponse of(PatientEntity entity) {
+    public static PatientResponse fromDomain(PatientEntity entity) {
         var response = new PatientResponse();
         BeanUtils.copyProperties(entity, response);
         return response;

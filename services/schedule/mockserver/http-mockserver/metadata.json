@@ -1,0 +1,209 @@
+[
+  {
+    "method": "GET",
+    "path": "/atena/instances/customers",
+    "response": [
+      {
+        "customer": "Iguá",
+        "instances": [
+          {
+            "instanceId": 308,
+            "city": "SP - Spat (Iguá Indicadores)"
+          },
+          {
+            "instanceId": 318,
+            "city": "Sansys Concessão - Iguá"
+          },
+          {
+            "instanceId": 337,
+            "city": "MT - Cuiabá Homologação Infra Cliente"
+          },
+          {
+            "instanceId": 338,
+            "city": "PR - Paranaguá Homologação Infra Cliente"
+          },
+          {
+            "instanceId": 339,
+            "city": "SC - Itapoa Homologação Infra Cliente"
+          },
+          {
+            "instanceId": 340,
+            "city": "SP - Sanessol Homologação Infra Cliente"
+          },
+          {
+            "instanceId": 341,
+            "city": "MT - Alta Floresta Homologação Infra Cliente"
+          },
+          {
+            "instanceId": 342,
+            "city": "SP - Andradina Homologação Infra Cliente"
+          },
+          {
+            "instanceId": 343,
+            "city": "MT - Canarana Homologação Infra Cliente"
+          },
+          {
+            "instanceId": 344,
+            "city": "SP - Castilho Homologação Infra Cliente"
+          },
+          {
+            "instanceId": 345,
+            "city": "MT - Colider Homologação Infra Cliente"
+          },
+          {
+            "instanceId": 346,
+            "city": "MT - Comodoro Homologação Infra Cliente"
+          },
+          {
+            "instanceId": 347,
+            "city": "MT - Esap Homologação Infra Cliente"
+          },
+          {
+            "instanceId": 348,
+            "city": "SP - Piquete Homologação Infra Cliente"
+          },
+          {
+            "instanceId": 349,
+            "city": "MT - Pontes Lacerda Homologação Infra Cliente"
+          },
+          {
+            "instanceId": 353,
+            "city": "Sales Force Homologação"
+          },
+          {
+            "instanceId": 355,
+            "city": "PR - Paranaguá Homologação Customização"
+          },
+          {
+            "instanceId": 370,
+            "city": "RJ - Paty do Alferes"
+          },
+          {
+            "instanceId": 371,
+            "city": "RJ - Miguel Pereira"
+          },
+          {
+            "instanceId": 372,
+            "city": "RJ - Rio Web"
+          },
+          {
+            "instanceId": 374,
+            "city": "RJ - Miguel Pereira Homologação Infra Cliente"
+          },
+          {
+            "instanceId": 376,
+            "city": "Sansys Concessão Igua Teste"
+          },
+          {
+            "instanceId": 377,
+            "city": "RJ - Rio de Janeiro - Sales Force - Homologação Infra Cliente"
+          },
+          {
+            "instanceId": 389,
+            "city": "RJ - Rio Job"
+          },
+          {
+            "instanceId": 390,
+            "city": "RJ - Rio de Janeiro - Homologação Infra do Cliente"
+          },
+          {
+            "instanceId": 391,
+            "city": "RJ - Paty do Alferes Homologação Infra Cliente"
+          },
+          {
+            "instanceId": 437,
+            "city": "MT - Cuiaba-Homologacao-SP"
+          },
+          {
+            "instanceId": 438,
+            "city": "MT - Alta Floresta Homologacao-SP"
+          },
+          {
+            "instanceId": 449,
+            "city": "RJ - Rio de Janeiro - Homologação-SP"
+          },
+          {
+            "instanceId": 456,
+            "city": "PR - Paranaguá Recadastramento Homologação-SP"
+          },
+          {
+            "instanceId": 457,
+            "city": "AL - Agreste (SLA) Homologacao"
+          },
+          {
+            "instanceId": 458,
+            "city": "Sales Force Homologação SP"
+          }
+        ],
+        "links": [
+          {
+            "rel": "self",
+            "href": "http://172.30.1.6:8090/atena/instances/customers"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "method": "GET",
+    "path": "/sansys/api/v1/payments",
+    "response": {
+      "id": "uuid",
+      "possible_responses": [
+        200
+      ],
+      "application": "Sansys - Iguá",
+      "service": "salesforce_payments_get",
+      "instanceId": 666,
+      "json": "{\"method\": \"GET_PAYMENT\"}"
+    }
+  },
+  {
+    "method": "POST",
+    "path": "/salesforce/api/v1/payments",
+    "response": {
+      "id": "uuid",
+      "possible_responses": [
+        500,
+        404,
+        401,
+        200
+      ],
+      "application": "Sansys - Iguá",
+      "service": "salesforce_payments_post",
+      "instanceId": 666,
+      "json": "{\"method\": \"POST_PAYMENT\"}"
+    }
+  },
+  {
+    "method": "GET",
+    "path": "/sansys/api/v1/installments",
+    "response": {
+      "id": "uuid",
+      "possible_responses": [
+        200
+      ],
+      "application": "Sansys - Iguá",
+      "service": "salesforce_installments_get",
+      "instanceId": 666,
+      "json": "{\"method\": \"GET_INSTALLMENTS\"}"
+    }
+  },
+  {
+    "method": "PUT",
+    "path": "/salesforce/api/v1/installments",
+    "response": {
+      "id": "uuid",
+      "possible_responses": [
+        500,
+        404,
+        401,
+        200
+      ],
+      "application": "Sansys - Iguá",
+      "service": "salesforce_installments_put",
+      "instanceId": 666,
+      "json": "{\"method\": \"PUT_INSTALLMENTS\"}"
+    }
+  }
+]

@@ -1,0 +1,45 @@
+spring:
+  application:
+    name: schedule
+    version: 1.0.0-SNAPSHOT
+  profiles:
+    active: ${PROFILE:dev}
+  data:
+    redis:
+      port: ${REDIS_PORT:6379}
+      host: ${REDIS_HOST:localhost}
+      database: ${REDIS_DB:0}
+      password: ${REDIS_PASS:root}
+    mongodb:
+      host: ${MONGODB_HOST:localhost}
+      database: schedule_db
+      port: ${MONGODB_PORT:27017}
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+server:
+  port: ${PORT:0}
+  forward-headers-strategy: framework
+logging:
+  level:
+    root: info
+    org.springframework.web: info
+    br.com.jtech.services.schedule: debug
+  file:
+    name: ./logs/${spring.application.name}.log
+springdoc:
+  api-docs:
+    groups:
+      enabled: 'true'
+    path: /doc/schedule/v3/api-documents
+  swagger-ui:
+    enabled: 'true'
+    path: /doc/schedule/v1/api.html
+api:
+  version: v1
+  description: Description here
+  url:
+    homologation: http://${HOMOLOGATION_SERVER:172.30.1.24}:${HOMOLOGATION_PORT:8081}
+    production: ${PRODUCTION_URI:http://${spring.application.name}.jtech.com.br}
