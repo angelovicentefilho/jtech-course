@@ -12,6 +12,7 @@
  */
 package br.com.jtech.services.patient.adapters.output.repositories;
 
+import org.springframework.data.mongodb.repository.Query;
 import org.springframework.stereotype.Repository;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import br.com.jtech.services.patient.adapters.output.repositories.entities.PatientEntity;
@@ -29,5 +30,4 @@ public interface PatientRepository extends MongoRepository<PatientEntity, UUID> 
 
     Optional<PatientEntity> findByName(String name);
 
-    Optional<PatientEntity> findByNameAndPhoneOrPhone(String name, String phone);
 }

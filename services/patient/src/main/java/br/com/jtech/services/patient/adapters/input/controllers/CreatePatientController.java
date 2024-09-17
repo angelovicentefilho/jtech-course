@@ -17,6 +17,7 @@ import br.com.jtech.services.patient.adapters.input.protocols.PatientRequest;
 import br.com.jtech.services.patient.adapters.input.protocols.PatientResponse;
 import br.com.jtech.services.patient.application.core.domains.Patient;
 import br.com.jtech.services.patient.application.ports.input.CreatePatientInputGateway;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -39,7 +40,7 @@ public class CreatePatientController {
     private final CreatePatientInputGateway createPatientInputGateway;
 
     @PostMapping
-    public ResponseEntity<PatientResponse> create(@RequestBody PatientRequest request) {
+    public ResponseEntity<PatientResponse> create(@RequestBody @Valid PatientRequest request) {
         var patient = createPatientInputGateway.create(Patient.fromRequest(request));
         return ResponseEntity.ok(PatientResponse.fromDomain(patient));
      }
