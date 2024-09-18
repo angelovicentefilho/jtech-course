@@ -14,6 +14,7 @@ package br.com.jtech.services.patient.adapters.input.protocols;
 
 import br.com.jtech.services.patient.application.core.domains.Patient;
 import br.com.jtech.services.patient.adapters.output.repositories.entities.PatientEntity;
+import br.com.jtech.services.patient.config.infra.utils.Response;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;
@@ -36,7 +37,7 @@ import java.util.List;
 @AllArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class PatientResponse implements Serializable {
+public class PatientResponse extends Response<Patient> implements Serializable {
     private String id;
     private String name;
     private String email;

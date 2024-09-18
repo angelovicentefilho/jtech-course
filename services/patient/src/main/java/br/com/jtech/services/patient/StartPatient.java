@@ -5,6 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import br.com.jtech.services.patient.config.infra.redis.RedisConfiguration;
 import org.springframework.context.annotation.Import;
+import org.springframework.data.mongodb.config.EnableMongoAuditing;
 
 @SpringBootApplication
 @Import(RedisConfiguration.class)

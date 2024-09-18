@@ -17,18 +17,17 @@ import br.com.jtech.services.patient.adapters.input.protocols.PatientRequest;
 import br.com.jtech.services.patient.adapters.input.protocols.PatientResponse;
 import br.com.jtech.services.patient.application.core.domains.Patient;
 import br.com.jtech.services.patient.application.ports.input.CreatePatientInputGateway;
+import br.com.jtech.services.patient.application.ports.input.UpdatePatientInputGateway;
 import br.com.jtech.services.patient.config.infra.annotations.JtechController;
-import br.com.jtech.services.patient.config.infra.utils.Response;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 import static br.com.jtech.services.patient.adapters.input.protocols.PatientResponse.fromDomain;
-import static br.com.jtech.services.patient.application.core.domains.Patient.fromRequest;
 import static br.com.jtech.services.patient.config.infra.utils.Response.createdOrBadRequest;
 
 /**
@@ -38,13 +37,16 @@ import static br.com.jtech.services.patient.config.infra.utils.Response.createdO
  */
 @JtechController("/api/v1/patients")
 @RequiredArgsConstructor
-public class CreatePatientController {
+public class UpdatePatientController {
 
-    private final CreatePatientInputGateway createPatientInputGateway;
+    private final UpdatePatientInputGateway updatePatientInputGateway;
 
-    @PostMapping
-    public ResponseEntity<PatientResponse> create(@RequestBody @Valid PatientRequest request) {
-        var patient = createPatientInputGateway.create(Patient.fromRequest(request));
+    @PutMapping("/{id}")
+    public ResponseEntity<PatientResponse> update(
+            @PathVariable String id,
+            @RequestBody @Valid PatientRequest request) {
+        request.setId(id);
+        var patient = updatePatientInputGateway.update(Patient.fromRequest(request));
         return createdOrBadRequest("/{id}", fromDomain(patient), patient.getId());
     }
 }

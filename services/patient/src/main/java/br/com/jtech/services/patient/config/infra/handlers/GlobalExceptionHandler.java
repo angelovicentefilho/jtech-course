@@ -12,7 +12,7 @@
 package br.com.jtech.services.patient.config.infra.handlers;
 
 
-
+import br.com.jtech.services.patient.application.core.exceptions.PatientNotFoundException;
 import br.com.jtech.services.patient.config.infra.exceptions.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -47,6 +47,16 @@ public class GlobalExceptionHandler {
         error.setTimestamp(LocalDateTime.now());
         error.setSubErrors(subErrors(ex));
         error.setDebugMessage(ex.getLocalizedMessage());
+        return buildResponseEntity(error);
+    }
+
+    @ExceptionHandler({
+            PatientNotFoundException.class,
+    })
+    public ResponseEntity<ApiError> hanndlerBadRequest(RuntimeException ex) {
+        ApiError error = new ApiError(HttpStatus.BAD_REQUEST);
+        error.setMessage(ex.getMessage());
+        error.setTimestamp(LocalDateTime.now());
         return buildResponseEntity(error);
     }
 
