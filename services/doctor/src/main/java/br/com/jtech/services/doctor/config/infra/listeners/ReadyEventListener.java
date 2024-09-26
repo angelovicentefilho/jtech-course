@@ -33,6 +33,8 @@ public class ReadyEventListener {
     @Value("${application.environment:LOCAL}")
     private String environment;
 
+    @Value("${spring.data.redis.host}")
+    private String redisHost;
     /**
      * The method executed after Spring Boot is ready to be used.
      *
@@ -47,6 +49,7 @@ public class ReadyEventListener {
     private void show() {
         log.info("======================================================");
         log.info("== Execute mode:.....................'{}'", environment);
+        log.info("== Redis Host  :.....................'{}'", redisHost);
         log.info("======================================================");
     }
 }

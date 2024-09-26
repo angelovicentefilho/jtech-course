@@ -1,15 +1,3 @@
-/*
- *  @(#)DoctorResponse.java
- *
- *  Copyright (c) J-Tech Solucoes em Informatica.
- *  All Rights Reserved.
- *
- *  This software is the confidential and proprietary information of J-Tech.
- *  ("Confidential Information"). You shall not disclose such Confidential
- *  Information and shall use it only in accordance with the terms of the
- *  license agreement you entered into with J-Tech.
- *
- */
 package br.com.jtech.services.doctor.adapters.output.protocols;
 
 import br.com.jtech.services.doctor.application.core.domains.Doctor;
@@ -23,11 +11,6 @@ import lombok.NoArgsConstructor;
 import java.io.Serializable;
 import java.util.List;
 
-/**
- * class DoctorResponse
- * <p>
- * user angelo
- */
 @Data
 @Builder
 @NoArgsConstructor
@@ -39,8 +22,15 @@ public class DoctorResponse implements Serializable {
     private String name;
     private String speciality;
     private String email;
+
     private List<DoctorResponse> responses;
 
+    /**
+     * Converts a Doctor domain object to a DoctorResponse.
+     *
+     * @param doctor the Doctor domain object
+     * @return the corresponding DoctorResponse
+     */
     public static DoctorResponse fromDomain(Doctor doctor) {
         return DoctorResponse.builder()
                 .id(doctor.getId().toString())
@@ -50,7 +40,12 @@ public class DoctorResponse implements Serializable {
                 .build();
     }
 
-
+    /**
+     * Converts a list of Doctor domain objects to a DoctorResponse containing a list of DoctorResponses.
+     *
+     * @param doctors the list of Doctor domain objects
+     * @return the corresponding DoctorResponse containing a list of DoctorResponses
+     */
     public static DoctorResponse fromDomains(List<Doctor> doctors) {
         var list = doctors.stream().map(DoctorResponse::fromDomain).toList();
         return DoctorResponse.builder()

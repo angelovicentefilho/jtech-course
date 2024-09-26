@@ -4,6 +4,6 @@ import br.com.jtech.services.doctor.application.core.domains.Doctor;
 
 import java.util.UUID;
 
-public interface FindDoctorByDoctorIdOutputGateway {
+public interface FindDoctorByIdOutputGateway {
     Doctor findByDoctorId(UUID id);
 }

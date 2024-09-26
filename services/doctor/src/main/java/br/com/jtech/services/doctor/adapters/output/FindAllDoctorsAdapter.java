@@ -10,12 +10,21 @@ import java.util.List;
 
 import static br.com.jtech.services.doctor.application.core.domains.Doctor.fromEntities;
 
+/**
+ * Adapter for finding all doctor entries.
+ * Implements the FindAllDoctorsOutputGateway interface.
+ */
 @Service
 @RequiredArgsConstructor
 public class FindAllDoctorsAdapter implements FindAllDoctorsOutputGateway {
 
     private final DoctorRepository repository;
 
+    /**
+     * Finds all doctor entries in the repository.
+     *
+     * @return a list of all doctor domain objects
+     */
     @Override
     public List<Doctor> findAll() {
         return fromEntities(this.repository.findAll());

@@ -13,7 +13,7 @@
 package br.com.jtech.services.doctor.config.usecases;
 
 import br.com.jtech.services.doctor.adapters.output.CreateDoctorAdapter;
-import br.com.jtech.services.doctor.adapters.output.FindDoctorByDoctorIdAdapter;
+import br.com.jtech.services.doctor.adapters.output.FindDoctorByIdAdapter;
 import br.com.jtech.services.doctor.application.core.usecases.CreateDoctorUseCase;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -28,7 +28,7 @@ public class CreateDoctorUseCaseConfig {
 
     @Bean
     public CreateDoctorUseCase createDoctorUseCase(CreateDoctorAdapter createDoctorAdapter,
-                                                   FindDoctorByDoctorIdAdapter findDoctorByDoctorIdAdapter) {
+                                                   FindDoctorByIdAdapter findDoctorByDoctorIdAdapter) {
         return new CreateDoctorUseCase(createDoctorAdapter, findDoctorByDoctorIdAdapter);
     }
 

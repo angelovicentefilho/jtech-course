@@ -1,15 +1,3 @@
-/*
- *  @(#)DoctorEntity.java
- *
- *  Copyright (c) J-Tech Solucoes em Informatica.
- *  All Rights Reserved.
- *
- *  This software is the confidential and proprietary information of J-Tech.
- *  ("Confidential Information"). You shall not disclose such Confidential
- *  Information and shall use it only in accordance with the terms of the
- *  license agreement you entered into with J-Tech.
- *
- */
 package br.com.jtech.services.doctor.adapters.output.repositories.entities;
 
 import lombok.AllArgsConstructor;
@@ -23,11 +11,8 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import java.io.Serializable;
 import java.util.UUID;
 
-
 /**
- * class DoctorEntity
- *
- * @author angelo
+ * Entity representing a doctor in the database.
  */
 @Data
 @Builder
@@ -37,11 +22,24 @@ import java.util.UUID;
 @Document(collection = "doctors")
 public class DoctorEntity implements Serializable {
 
+    /**
+     * The unique identifier of the doctor.
+     */
     @Id
     private UUID id;
+
+    /**
+     * The name of the doctor.
+     */
     private String name;
+
+    /**
+     * The speciality of the doctor.
+     */
     private String speciality;
+
+    /**
+     * The email of the doctor.
+     */
     private String email;
-
-
 }

@@ -31,4 +31,9 @@ public class GenId {
     public static String newId(String id) {
         return (id != null && !id.isEmpty()) ? id : UUID.randomUUID().toString();
     }
+
+    public static UUID newUuid(String id) {
+        // if id is null create new uuid else uuid from string
+        return (id != null && !id.isEmpty()) ? UUID.fromString(id) : UUID.randomUUID();
+    }
 }

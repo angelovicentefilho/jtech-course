@@ -12,7 +12,9 @@
 package br.com.jtech.services.doctor.config.infra.handlers;
 
 
-
+import br.com.jtech.services.doctor.application.core.exceptions.DoctorBadRequestException;
+import br.com.jtech.services.doctor.application.core.exceptions.DoctorDuplicateException;
+import br.com.jtech.services.doctor.application.core.exceptions.DoctorNotFoundException;
 import br.com.jtech.services.doctor.config.infra.exceptions.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -47,6 +49,30 @@ public class GlobalExceptionHandler {
         error.setTimestamp(LocalDateTime.now());
         error.setSubErrors(subErrors(ex));
         error.setDebugMessage(ex.getLocalizedMessage());
+        return buildResponseEntity(error);
+    }
+
+    @ExceptionHandler(DoctorBadRequestException.class)
+    public ResponseEntity<ApiError> badRequest(RuntimeException ex) {
+        ApiError error = new ApiError(HttpStatus.BAD_REQUEST);
+        error.setMessage(ex.getLocalizedMessage());
+        error.setTimestamp(LocalDateTime.now());
+        return buildResponseEntity(error);
+    }
+
+    @ExceptionHandler(DoctorDuplicateException.class)
+    public ResponseEntity<ApiError> conflict(RuntimeException ex) {
+        ApiError error = new ApiError(HttpStatus.CONFLICT);
+        error.setMessage(ex.getLocalizedMessage());
+        error.setTimestamp(LocalDateTime.now());
+        return buildResponseEntity(error);
+    }
+
+    @ExceptionHandler(DoctorNotFoundException.class)
+    public ResponseEntity<ApiError> notFound(RuntimeException ex) {
+        ApiError error = new ApiError(HttpStatus.NOT_FOUND);
+        error.setMessage(ex.getLocalizedMessage());
+        error.setTimestamp(LocalDateTime.now());
         return buildResponseEntity(error);
     }
 

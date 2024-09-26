@@ -1,15 +1,3 @@
-/*
- *  @(#)DoctorAdapter.java
- *
- *  Copyright (c) J-Tech Solucoes em Informatica.
- *  All Rights Reserved.
- *
- *  This software is the confidential and proprietary information of J-Tech.
- *  ("Confidential Information"). You shall not disclose such Confidential
- *  Information and shall use it only in accordance with the terms of the
- *  license agreement you entered into with J-Tech.
- *
- */
 package br.com.jtech.services.doctor.adapters.output;
 
 import br.com.jtech.services.doctor.adapters.output.repositories.DoctorRepository;
@@ -19,9 +7,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 /**
- * class DoctorAdapter
- * <p>
- * user angelo
+ * Adapter for creating doctor entries.
+ * Implements the CreateDoctorOutputGateway interface.
  */
 @Component
 @RequiredArgsConstructor
@@ -29,6 +16,12 @@ public class CreateDoctorAdapter implements CreateDoctorOutputGateway {
 
     private final DoctorRepository repository;
 
+    /**
+     * Creates a new doctor entry in the repository.
+     *
+     * @param doctor the doctor domain object to create
+     * @return the created doctor domain object
+     */
     @Override
     public Doctor create(Doctor doctor) {
         return Doctor.fromEntity(this.repository.save(doctor.toEntity()));

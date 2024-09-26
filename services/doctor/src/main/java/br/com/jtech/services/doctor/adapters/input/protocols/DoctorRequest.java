@@ -1,15 +1,3 @@
-/*
- *  @(#)DoctorRequest.java
- *
- *  Copyright (c) J-Tech Solucoes em Informatica.
- *  All Rights Reserved.
- *
- *  This software is the confidential and proprietary information of J-Tech.
- *  ("Confidential Information"). You shall not disclose such Confidential
- *  Information and shall use it only in accordance with the terms of the
- *  license agreement you entered into with J-Tech.
- *
- */
 package br.com.jtech.services.doctor.adapters.input.protocols;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -24,9 +12,7 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
- * class DoctorRequest
- * <p>
- * user angelo
+ * Represents a request to create or update a doctor entry.
  */
 @Data
 @Builder
@@ -35,12 +21,31 @@ import java.util.List;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class DoctorRequest implements Serializable {
     private String id;
+
+    /**
+     * The name of the doctor.
+     * Cannot be null or blank.
+     */
     @NotBlank(message = "Name cannot be null!")
     private String name;
+
+    /**
+     * The speciality of the doctor.
+     * Cannot be null or blank.
+     */
     @NotBlank(message = "Speciality cannot be null!")
     private String speciality;
+
+    /**
+     * The email of the doctor.
+     * Must be a valid email format and cannot be null or blank.
+     */
     @NotBlank(message = "Email cannot be null!")
     @Email(message = "Invalid email!")
     private String email;
+
+    /**
+     * A list of additional doctor requests.
+     */
     private List<DoctorRequest> requests;
 }
